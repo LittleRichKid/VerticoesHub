@@ -1,1 +1,1 @@
-worker: hub.js
+worker: npm start
