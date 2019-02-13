@@ -1,0 +1,1 @@
+worker: hub.js
