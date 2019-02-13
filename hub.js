@@ -18,13 +18,18 @@ Bot.on('message', (message) => {
     if (msg === 'hi') return message.reply(`Hello, ${user}! Are you looking for someone?`);
 
     if (msg === prefix + 'bulk') {
-        message.channel.bulkDelete(100);
-        message.channel.bulkDelete(100);
-        message.channel.bulkDelete(100);
-        message.channel.bulkDelete(100);
-        message.channel.bulkDelete(100);
-        message.channel.bulkDelete(100);
-        auth.send('*Bulk deleted 100 messages in Verticoes.*');
+        message.channel.bulkDelete(10);
+        auth.send('*Bulk deleted 50 messages in Verticoes.*');
+    };
+
+    if (msg === prefix + 'shift') {
+        const embed = new Discord.RichEmbed()
+        .setTitle = 'Shift'
+        .setDescription = `A session is being hosted by ${user} at the cafe now! Please come join us for a possible promotion, or to just relax with a nice drink!`
+        .setAuthor = 'Verticoes Cafe'
+        .setColor = '#FFAA7F'
+
+        Bot.channels.find(x >= x.name === 'event-announcement').send(embed);
     };
 });
 
