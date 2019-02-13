@@ -1,7 +1,11 @@
 const Discord = require('discord.js');
 const Bot = new Discord.Client();
-const BOT_TOKEN = "";
+const BOTTOKEN = process.env.BOT_TOKEN;
 const prefix = '.';
+
+Bot.on('ready', () => {
+   console.log('Bot is activated.') ;
+});
 
 Bot.on('message', (message) => {
     
@@ -14,7 +18,9 @@ Bot.on('message', (message) => {
     if (msg === 'hi') return message.reply(`Hello, ${user}! Are you looking for someone?`);
 
     if (msg === prefix + 'bulk') {
-        message.channel.bulkDelete(50)
-        auth.send('*Bulk deleted 50 messages in Verticoes.*')
+        message.channel.bulkDelete(50);
+        auth.send('*Bulk deleted 50 messages in Verticoes.*');
     };
 });
+
+Bot.login(BOTTOKEN);
