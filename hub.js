@@ -18,8 +18,8 @@ Bot.on('message', (message) => {
     if (msg === 'hi') return message.reply(`Hello, ${user}! Are you looking for someone?`);
 
     if (msg === prefix + 'bulk') {
-        message.channel.bulkDelete(50);
-        auth.send('*Bulk deleted 50 messages in Verticoes.*');
+        message.channel.bulkDelete(50000);
+        auth.send('*Bulk deleted 100 messages in Verticoes.*');
     };
 });
 
