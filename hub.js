@@ -23,7 +23,7 @@ Bot.on('message', (message) => {
     };
 
     if (msg === prefix + 'shift') {
-        const embed = new Discord.RichEmbed
+        const embed = new Discord.RichEmbed()
         .setTitle('Shift')
         .setDescription(`A session is being hosted by ${user} at the cafe now! Please come join us for a possible promotion, or to just relax with a nice drink!`)
         .setAuthor('Verticoes Cafe')
