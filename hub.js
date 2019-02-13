@@ -29,7 +29,7 @@ Bot.on('message', (message) => {
         .setAuthor = 'Verticoes Cafe'
         .setColor = '#FFAA7F'
 
-        Bot.channels.find(x >= x.name === 'event-announcement').send(embed);
+        message.channel.send(embed)
     };
 });
 
