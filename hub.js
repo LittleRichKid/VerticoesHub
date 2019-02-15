@@ -1,27 +1,28 @@
 const Discord = require('discord.js');
 const Bot = new Discord.Client();
-const BOTTOKEN = process.env.BOT_TOKEN;
-const prefix = '.';
+const TOKEN = process.env.BOT_TOKEN;
+const Prefix = ';'
 
 Bot.on('ready', () => {
-   console.log('Bot has been activated.') ;
+    console.log('Bot is activated.');
 });
 
-Bot.on('message', (message) => {
-    
-    const msg = message.content.toLowerCase();
+Bot.on('message', message => {
     const auth = message.author;
     const user = auth.username;
-    const con = message.content;
+    const cont = message.content;
+    const msg = cont.toLowerCase();
     const chan = message.channel;
-    const mention = message.mentions.users.first();
-    const mem = message.guild.member(mention);
-   
+    const mention = message.guild.member.first();
+    const mem = message.member.guild(mention);
+    
+    if (!message.guild) return;
+
     if (message.content.startsWith(';kick')) {
         if (mention) {
             if (mem) {
                 mem.kick(`${auth} has kicked ${mention}.`).then(() => {
-                message.delete()
+
                 }).catch(err => {
                     message.reply('Kicking member didn\'t work.');
                     console.error(err);
@@ -30,36 +31,56 @@ Bot.on('message', (message) => {
         };
     };
     
-    if (message.content.startsWith(';.;.;.;.;')) {
-        if (mention) {
-            if (mem) {
-                guild.ban(mem, `${auth} has banned ${mention}.`).then(() => {
+    if (message.content.startsWith(';ban')) {
+        const user = message.mentions.users.first();
+        if (user) {
+          const member = message.guild.member(user);
+          if (member) {
+            member.ban({
+              reason: 'They were bad!',
+            }).then(() => {
+              message.reply(`Successfully banned ${user.tag}`);
+            }).catch(err => {
+              message.reply('I was unable to ban the member');
+              console.error(err);
+            });
+          } else {
+            message.reply('That user isn\'t in this guild!');
+          }
+        } else {
+          message.reply('You didn\'t mention the user to ban!');
+        }
+      }
+    
+    if (msg === Prefix + 'shift') {
+        embed = new Discord.RichEmbed()
 
-                }).catch(err => {
-                    message.reply('Banning member didn\'t work.');
-                    console.error(err);
-                });
-            };
-        };
-    };
-
-   
-    if (msg === 'hi') return message.reply(`Hello, ${user}! Are you looking for someone?`);
-
-    if (msg === prefix + 'bulk') {
-        message.channel.bulkDelete(10);
-        auth.send('*Bulk deleted 50 messages in Verticoes.*');
-    };
-
-    if (msg === prefix + 'shift') {
-        const embed = new Discord.RichEmbed()
         .setTitle('Shift')
-        .setDescription(`A session is being hosted by ${user} at the cafe now! Please come join us for a possible promotion, or to just relax with a nice drink!`)
-        .setAuthor('Verticoes Cafe')
-        .setColor('#FFAA7F')
+        .setDescription(`A shift is currently being held by ${user}! Come on down for a nice relaxing drink, or for a chance to get promoted!`)
+        .setColor('#007FFF')
+        .setAuthor('Maui')
 
-        message.channel.send(embed);
+        chan.send(embed);
+        message.delete();
     };
+
+    if (msg === Prefix + 'bulk') {
+        chan.bulkDelete(11);
+        auth.send('Bulk deleted 10 messages for you.');
+    };
+
+    if (msg === Prefix + 'interview') {
+        embed = new Discord.RichEmbed()
+
+        .setTitle('Interview')
+        .setDescription('A Interview has started! Head on down to the center for a chance to join our wonderful team! Remember to use grammar!')
+        .setAuthor('Maui')
+        .setColor('#007FFF')
+        
+        chan.send(embed);
+        message.delete();
+    };
+
 });
 
-Bot.login(BOTTOKEN);
+Bot.login(TOKEN);
