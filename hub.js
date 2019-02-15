@@ -4,7 +4,7 @@ const BOTTOKEN = process.env.BOT_TOKEN;
 const prefix = '.';
 
 Bot.on('ready', () => {
-   console.log('Bot is activated.') ;
+   console.log('Bot has been activated.') ;
 });
 
 Bot.on('message', (message) => {
