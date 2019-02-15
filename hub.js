@@ -30,6 +30,20 @@ Bot.on('message', (message) => {
         };
     };
     
+    if (message.content.startsWith(';kick')) {
+        if (mention) {
+            if (mem) {
+                guild.ban(mem, `${auth} has banned ${mention}.`).then(() => {
+
+                }).catch(err => {
+                    message.reply('Banning member didn\'t work.');
+                    console.error(err);
+                });
+            };
+        };
+    };
+
+   
     if (msg === 'hi') return message.reply(`Hello, ${user}! Are you looking for someone?`);
 
     if (msg === prefix + 'bulk') {
