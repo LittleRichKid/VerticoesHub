@@ -30,7 +30,7 @@ Bot.on('message', (message) => {
         };
     };
     
-    if (message.content.startsWith(';ban')) {
+    if (message.content.startsWith(';.;.;.;.;')) {
         if (mention) {
             if (mem) {
                 guild.ban(mem, `${auth} has banned ${mention}.`).then(() => {
