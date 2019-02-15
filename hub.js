@@ -13,23 +13,6 @@ Bot.on('message', message => {
     const cont = message.content;
     const msg = cont.toLowerCase();
     const chan = message.channel;
-    const mention = message.guild.users.first();
-    const mem = message.member.guild(mention);
-    
-    if (!message.guild) return;
-
-    if (message.content.startsWith(';kick')) {
-        if (mention) {
-            if (mem) {
-                mem.kick(`${auth} has kicked ${mention}.`).then(() => {
-
-                }).catch(err => {
-                    message.reply('Kicking member didn\'t work.');
-                    console.error(err);
-                });
-            };
-        };
-    };
     
     if (msg === Prefix + 'shift') {
         embed = new Discord.RichEmbed()
