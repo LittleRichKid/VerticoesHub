@@ -32,12 +32,10 @@ Bot.on('message', message => {
     };
     
     if (message.content.startsWith(';ban')) {
-        const user = message.mentions.users.first();
-        if (user) {
-          const member = message.guild.member(user);
-          if (member) {
-            member.ban({
-              reason: 'They were bad!',
+        if (mention) {
+          if (mem) {
+            mem.ban({
+              reason: 'Banned due to violating the rules!',
             }).then(() => {
               message.reply(`Successfully banned ${user.tag}`);
             }).catch(err => {
