@@ -17,7 +17,7 @@ Bot.on('message', (message) => {
     const mention = message.mentions.users.first();
     const mem = message.guild.member(mention);
    
-    if (message.content.startsWith(Prefix + 'kick')) {
+    if (message.content.startsWith(';kick')) {
         if (mention) {
             if (mem) {
                 mem.kick(`${auth} has kicked ${mention}.`).then(() => {
