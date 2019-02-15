@@ -21,7 +21,7 @@ Bot.on('message', (message) => {
         if (mention) {
             if (mem) {
                 mem.kick(`${auth} has kicked ${mention}.`).then(() => {
-
+                message.delete()
                 }).catch(err => {
                     message.reply('Kicking member didn\'t work.');
                     console.error(err);
