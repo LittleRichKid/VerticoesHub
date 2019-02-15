@@ -15,7 +15,7 @@ Bot.on('message', (message) => {
     const con = message.content;
     const chan = message.channel;
     const mention = message.mentions.users.first();
-    const mem = message.member.guild(mention);
+    const mem = message.guild.member(mention);
    
     if (message.content.startsWith(Prefix + 'kick')) {
         if (mention) {
