@@ -14,6 +14,21 @@ Bot.on('message', (message) => {
     const user = auth.username;
     const con = message.content;
     const chan = message.channel;
+    const mention = message.mentions.users.first();
+    const mem = message.member.guild(mention);
+   
+    if (message.content.startsWith(Prefix + 'kick')) {
+        if (mention) {
+            if (mem) {
+                mem.kick(`${auth} has kicked ${mention}.`).then(() => {
+
+                }).catch(err => {
+                    message.reply('Kicking member didn\'t work.');
+                    console.error(err);
+                });
+            };
+        };
+    };
     
     if (msg === 'hi') return message.reply(`Hello, ${user}! Are you looking for someone?`);
 
